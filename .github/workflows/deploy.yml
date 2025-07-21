@@ -20,5 +20,5 @@ jobs:
 
       - name: Deploy via SSH
         run: |
-         ssh -o StrictHostKeyChecking=no root@213.210.37.3 'cd /root/dcotor-part/lab-dcotor && git pull origin main'
+         ssh -o StrictHostKeyChecking=no root@213.210.37.3 'cd /root/doctor-micro/doctor-micro && git pull origin main'
 
