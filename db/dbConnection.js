@@ -9,7 +9,7 @@ const { Sequelize } = require("sequelize");
 //  });
 
 ///For Production
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DB_URL;
 
 if (!databaseUrl) {
   console.error("DATABASE_URL environment variable is not set!");
