@@ -8,7 +8,6 @@ const DoctorRoutes=require('./route/doctorRoutes');
 const AuthRoutes=require('./route/authRoutes');
 const verifyToken=require('./middleware/authMiddileware');
 const role=require('./middleware/roleMiddleware');
-const sequelize = require("./db/dbConnection");
 
 app.use(cors());
 app.use(express.json());
