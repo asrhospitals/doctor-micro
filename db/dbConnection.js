@@ -13,7 +13,11 @@ const {Sequelize}=require('sequelize');
 
 
 ///For Production
-const sequelize= new Sequelize(process.env.DATABASE_URL,{ dialect: 'postgres',port:5432});
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres', // or your db type
+  // other options
+});
+
 
 
 
