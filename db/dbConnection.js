@@ -1,6 +1,5 @@
-require('dotenv').config();
-const {Sequelize}=require('sequelize');
-
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
 
 /// For Dev
 // const sequelize = new Sequelize('lims_database', 'postgres', 'Postgres123', {
@@ -9,16 +8,18 @@ const {Sequelize}=require('sequelize');
 //    port: 5432,
 //  });
 
-
-
-
 ///For Production
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: 'postgres', // or your db type
-port:5432
+const databaseUrl = process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  console.error("DATABASE_URL environment variable is not set!");
+  console.log("Available environment variables:", Object.keys(process.env).filter(key => key.includes('DB') || key.includes('DATABASE')));
+  process.exit(1);
+}
+
+const sequelize = new Sequelize(databaseUrl, {
+  dialect: "postgres",
+  port: 5432,
 });
 
-
-
-
-module.exports=sequelize;
+module.exports = sequelize;
