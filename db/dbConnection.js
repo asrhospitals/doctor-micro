@@ -8,16 +8,11 @@ const { Sequelize } = require("sequelize");
 //    port: 5432,
 //  });
 
+
+
+
 ///For Production
-const databaseUrl = process.env.DB_URL;
-
-if (!databaseUrl) {
-  console.error("DATABASE_URL environment variable is not set!");
-  console.log("Available environment variables:", Object.keys(process.env).filter(key => key.includes('DB') || key.includes('DATABASE')));
-  process.exit(1);
-}
-
-const sequelize = new Sequelize(databaseUrl, {
+const sequelize = new Sequelize(process.env.DB_URL, {
   dialect: "postgres",
   port: 5432,
 });

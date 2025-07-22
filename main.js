@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3005;
-const DbConnection = require("./db/dbConnection");
 const cors = require("cors");
 const DoctorRoutes=require('./route/doctorRoutes');
 const AuthRoutes=require('./route/authRoutes');
 const verifyToken=require('./middleware/authMiddileware');
 const role=require('./middleware/roleMiddleware');
+const sequelize=require('./db/dbConnection');
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +34,7 @@ app.get('/',async (req,res) => {
 
 const server = async () => {
   try {
-    await DbConnection.authenticate().then(() => {console.log("Database Connected");}).catch(() => {console.log("Connection Failed");});
+    await sequelize.authenticate().then(() => {console.log("Database Connected");}).catch(() => {console.log("Connection Failed");});
     // await sequelize.sync();
     app.listen(PORT, () => {console.log(`Server Connected at the port ${PORT}`);});
   } catch (error) {
