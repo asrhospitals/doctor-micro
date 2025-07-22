@@ -1,4 +1,3 @@
-require('dotenv').config({override:true});
 const User = require("../../model/relationalModels/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -36,7 +35,7 @@ const login = async (req, res) => {
     if (user.role === "doctor") {
       const token = jwt.sign(
         { id: user.user_id, role: user.role, module: user.module },
-        process.env.JWT_SECRET
+        my-secret-key
         // { expiresIn: '1h' }
       );
 
