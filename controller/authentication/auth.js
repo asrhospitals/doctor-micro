@@ -1,3 +1,4 @@
+require('dotenv').config({override:true});
 const User = require("../../model/relationalModels/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
