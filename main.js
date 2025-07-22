@@ -1,10 +1,9 @@
-require('dotenv').config({override:true});
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3005;
 const cors = require("cors");
 const DoctorRoutes=require('./route/doctorRoutes');
-const AuthRoutes=require('./route/authRoutes');
 const verifyToken=require('./middleware/authMiddileware');
 const role=require('./middleware/roleMiddleware');
 const sequelize=require('./db/dbConnection');
@@ -14,10 +13,6 @@ app.use(express.json());
 
 
 // All Routes Define here
-
-// ------------------Authentication Routes for Doctors
-app.use('/lims/doctor/auth',AuthRoutes);
-
 
 /// ----------------Access of Diffrent Doctor Panel Like biochemistry doctor panel,microbiology doctor panel etc
 app.use('/lims/doctor',verifyToken,role('doctor'),DoctorRoutes);
@@ -38,7 +33,7 @@ const server = async () => {
     // await sequelize.sync();
     app.listen(PORT, () => {console.log(`Server Connected at the port ${PORT}`);});
   } catch (error) {
-    console.log(error);
+   return res.status(500).json({message:`Something went wrong ${error}`});
   }
 };
 
